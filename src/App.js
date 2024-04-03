@@ -1,19 +1,32 @@
-import { Component } from 'react';
+import { useState } from "react";
 
-import CardList  from './components/card-list/card-list.component';
-import SearchBox from './components/search-box/search-box.component';
-import './App.css';
+// import CardList from "./components/card-list/card-list.component";
+import SearchBox from "./components/search-box/search-box.component";
+import "./App.css";
 
 const App = () => {
+  const [searchField, setSearchField] = useState("");
+
+  console.log(searchField);
+
+  const onSearchChange = (event) => {
+    const searchString = event.target.value.toLocaleLowerCase();
+
+    setSearchField(searchString);
+  };
+
   return (
     <div className="App">
-      <h1 className='app-title'>Cats Rolodox</h1>
-      {/* <SearchBox onSearchHandler={ onSearchChange } placeholder="Search monsters" className='search-box'/>
-      <CardList monsters={ filterMonsters }/> */}
+      <h1 className="app-title">Cats Rolodox</h1>
+      <SearchBox
+        onSearchHandler={onSearchChange}
+        placeholder="Search monsters"
+        className="search-box"
+      />
+      {/* <CardList monsters={ filterMonsters }/> */}
     </div>
   );
-}
-
+};
 
 // class App extends Component {
 //   constructor() {
@@ -37,8 +50,8 @@ const App = () => {
 //   onSearchChange = (event) => {
 //     const searchString = event.target.value.toLocaleLowerCase();
 
-//     this.setState(() => { 
-//       return  { searchString }; 
+//     this.setState(() => {
+//       return  { searchString };
 //     });
 //   }
 
