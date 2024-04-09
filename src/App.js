@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-// import CardList from "./components/card-list/card-list.component";
+import CardList from "./components/card-list/card-list.component";
 import SearchBox from "./components/search-box/search-box.component";
 import "./App.css";
 
 const App = () => {
   const [searchField, setSearchField] = useState("");
+  const [monsters, setMonsters] = useState([]);
 
   console.log(searchField);
 
@@ -15,6 +16,10 @@ const App = () => {
     setSearchField(searchString);
   };
 
+  const filterMonsters = monsters.filter(monster => {
+    return monster.name.toLocaleLowerCase().includes(searchString);
+  });
+
   return (
     <div className="App">
       <h1 className="app-title">Cats Rolodox</h1>
@@ -23,7 +28,9 @@ const App = () => {
         placeholder="Search monsters"
         className="search-box"
       />
-      {/* <CardList monsters={ filterMonsters }/> */}
+      <CardList 
+        monsters={ filterMonsters }
+      />
     </div>
   );
 };
